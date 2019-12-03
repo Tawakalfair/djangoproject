@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal</title>
+      {% if request.user.is_authenticated %}
+            <p>selamat datang, {{request.user.username}} | <a href="{% url 'logout' %}">logout</a></p>    
+        {% else %}
+            <p><a href="{% url 'registrasi' %}">Register</a> | <a href="#">login</a></p>
+        {% endif %}
+            
+    {% block header %}
+        
+      
+    {% endblock header %}
+        
+</head>
+<body>
+
+{% block content %}
+    
+{% endblock content %}
+
+<footer>
+
+{% block footer %}
+    
+{% endblock footer %}
+    
+</footer>
+
+</body>
+</html>
