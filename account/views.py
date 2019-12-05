@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
-from account.forms import RegistrasiForm,LoginForm
+from account.forms import RegistrasiForm,LoginForm,UpdateForm
 # Create your views here.
 
 def registrasi_view(request):
@@ -48,3 +48,22 @@ def login_view(request):
     context['login_form'] = form
     return render(request, 'account/login.html', context)
 
+def account_view(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    context = {}
+
+    if request.POST:
+        form = UpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UpdateForm(
+            initial= {
+                "email":request.user.email,
+                "username": request.user.username,
+                }
+            )
+    context['account_form'] = form
+    return render(request, 'account/account.html', context)

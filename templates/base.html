@@ -6,9 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Personal</title>
       {% if request.user.is_authenticated %}
-            <p>selamat datang, {{request.user.username}} | <a href="{% url 'logout' %}">logout</a></p>    
+            <p><a href="{% url 'home' %}">home</a> |
+               <a href="{% url 'account' %}">account</a> |
+               <a href="{% url 'logout' %}">logout</a>
+            </p>
+            <p>selamat datang, {{request.user.username}}</p>    
         {% else %}
-            <p><a href="{% url 'registrasi' %}">Register</a> | <a href="{% url 'login' %}">login</a></p>
+            <p><a href="{% url 'home' %}">home</a> |
+               <a href="{% url 'registrasi' %}">Register</a> | 
+               <a href="{% url 'login' %}">login</a></p>
         {% endif %}
             
     {% block header %}
